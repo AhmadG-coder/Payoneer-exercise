@@ -1,7 +1,4 @@
 pipeline {
-    environment {
-        service_name =
-    }
     agent any
     stages {
         stage('Checkout version') {
