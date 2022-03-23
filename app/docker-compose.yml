@@ -1,0 +1,19 @@
+version: '3.7'
+services:
+  fastapi:
+    build:
+      context: .
+      dockerfile: fastpi.dockerfile
+    container_name: fastapi
+    hostname: dynamodb
+    volumes:
+      - $HOME/.aws/credentials:/root/.aws/credentials:ro
+    ports:
+      - 80:80
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        window: 120s
+
