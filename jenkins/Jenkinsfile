@@ -1,5 +1,5 @@
 pipeline {
-    agent any
+    agent {label 'agent'}
     stages {
         stage('Checkout version') {
             steps {
@@ -12,9 +12,25 @@ pipeline {
                     steps {
                         script {
                             def docker_name="service:${BUILD_NUMBER}"
-                            sh "sudo docker build app/"
+                            sh "docker build app/ -t ${docker_name}"
                         }
                     }
                 }
+        stage('Tag for deployment') {
+                            steps {
+                                script {
+                                    def docker_name="service:${BUILD_NUMBER}"
+                                    sh "docker tag ${docker_name} service_name:latest"
+                                }
+                            }
+                        }
+        stage('Deploy') {
+                                    steps {
+                                        script {
+                                            def docker_name="service:${BUILD_NUMBER}"
+                                            sh "cd app/ && docker-compose up -d"
+                                        }
+                                    }
+                                }
     }
 }
