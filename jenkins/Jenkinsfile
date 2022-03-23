@@ -1,12 +1,23 @@
 pipeline {
+    environment {
+        service_name =
+    }
     agent any
     stages {
-        stage('Example') {
+        stage('Checkout version') {
             steps {
                 script {
                     checkout([$class: 'GitSCM', branches: [[name: '${service_revision}']], extensions: [], userRemoteConfigs: [[credentialsId: 'repository', url: 'git@github.com:AhmadG-coder/Payoneer-exercise.git']]])
                 }
             }
         }
+        stage('Build') {
+                    steps {
+                        script {
+                            def docker_name="service:${BUILD_NUMBER}"
+                            sh "cd  docker build app/"
+                        }
+                    }
+                }
     }
 }
