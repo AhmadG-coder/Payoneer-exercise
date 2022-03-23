@@ -12,7 +12,7 @@ pipeline {
                     steps {
                         script {
                             def docker_name="service:${BUILD_NUMBER}"
-                            sh "cd  docker build app/"
+                            sh "docker build app/"
                         }
                     }
                 }
