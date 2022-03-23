@@ -1,8 +1,4 @@
 pipeline {
-checkout([$class: 'GitSCM', branches: [[name: '${service_revision}']], extensions: [], userRemoteConfigs: [[credentialsId: 'repository', url: 'git@github.com:AhmadG-coder/Payoneer-exercise.git']]])
-}
-
-pipeline {
     agent any
     stages {
         stage('Example') {
