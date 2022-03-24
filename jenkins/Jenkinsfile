@@ -1,5 +1,7 @@
 pipeline {
     agent {label 'agent'}
+    environment {
+    current_docker_image_name = "service:${BUILD_NUMBER}"}
     stages {
         stage('Checkout version') {
             steps {
@@ -11,26 +13,28 @@ pipeline {
         stage('Build') {
                     steps {
                         script {
-                            def docker_name="service:${BUILD_NUMBER}"
-                            sh "docker build app/ -t ${docker_name}"
+
+                            sh "docker build app/ -t ${env.current_docker_image_name}"
                         }
                     }
                 }
         stage('Tag for deployment') {
                             steps {
                                 script {
-                                    def docker_name="service:${BUILD_NUMBER}"
-                                    sh "docker tag ${docker_name} service_name:latest"
+                                    def last_docker_image_num = Jenkins.instance.getItem(env.JOB_NAME).lastSuccessfulBuild.number
+                                    sh "docker tag service:latest service:${last_docker_image_num}"
+                                    sh "docker tag ${env.current_docker_image_name} service:latest"
                                 }
                             }
                         }
         stage('Deploy') {
                                     steps {
                                         script {
-                                            def docker_name="service:${BUILD_NUMBER}"
                                             sh "cd app/ && docker-compose up -d"
                                         }
                                     }
                                 }
     }
 }
+
+
