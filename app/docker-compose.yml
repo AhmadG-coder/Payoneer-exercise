@@ -2,7 +2,7 @@ version: '3.7'
 services:
   service:
     image: service:latest
-    container_name:
+    container_name: service
     hostname: dynamodb
     volumes:
       - $HOME/.aws/credentials:/root/.aws/credentials:ro
