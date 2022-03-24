@@ -21,7 +21,8 @@ pipeline {
         stage('Tag for deployment') {
                             steps {
                                 script {
-                                    def last_docker_image_num = Jenkins.instance.getItem(env.JOB_NAME).lastSuccessfulBuild.number
+                                    def last_docker_image_num = Jenkins.instance.getsh "docker image prune -a --force --filter 'until=3h'Item(env.JOB_NAME).lastSuccessfulBuild.number"
+                                    sh "docker image prune -a --force --filter 'until=3h'"
                                     sh "docker tag service:latest service:${last_docker_image_num}"
                                     sh "docker tag ${env.current_docker_image_name} service:latest"
                                 }
