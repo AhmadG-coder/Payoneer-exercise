@@ -26,9 +26,10 @@ pipeline {
                                     def last_docker_image_num = Jenkins.instance.getItem(env.JOB_NAME).lastSuccessfulBuild.number
                                     sh "docker container prune -a --force --filter 'until=3h'"
                                     sh "docker image prune -a --force --filter 'until=3h'"
-                                    tag_exists = sh script:"docker images -q ${latest_image_name}", returnst
-                                    sh "docker tag ${env.current_docker_image_name} ${latest_image_name}"
-                                    sh "docker tag ${latest_image_name} service:${last_docker_image_num}"
+                                    tag_exists = sh (script:"docker images -q ${latest_image_name}", returnStdout:true)
+                                    if (tag_exists.trim()){
+                                        sh "docker tag ${latest_image_name} service:${last_docker_image_num}"
+                                    }
                                     sh "docker tag ${env.current_docker_image_name} ${latest_image_name}"
                                 }
                             }
