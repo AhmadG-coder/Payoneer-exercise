@@ -8,7 +8,7 @@ pipeline {
         stage('Checkout version') {
             steps {
                 script {
-                    checkout([$class: 'GitSCM', branches: [[name: '${service_revision}']], extensions: [], userRemoteConfigs: [[credentialsId: 'repository', url: 'git@github.com:AhmadG-coder/Payoneer-exercise.git']]])
+                    checkout([$class: 'GitSCM', branches: [[name: '${service_revision}']], extensions: [], userRemoteConfigs: [[credentialsId: '4d49bdc7-df49-4b1a-8ea4-9d6dd0dbf2be', url: 'git@github.com:AhmadG-coder/Payoneer-exercise.git']]])
                 }
             }
         }
