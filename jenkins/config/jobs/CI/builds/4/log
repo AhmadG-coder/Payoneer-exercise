@@ -1,0 +1,38 @@
+Started by user [8mha:////4J79oybGZ/RkYO60nghGm8O5N8AhGct4U93q4p/TPTeiAAAAlx+LCAAAAAAAAP9b85aBtbiIQTGjNKU4P08vOT+vOD8nVc83PyU1x6OyILUoJzMv2y+/JJUBAhiZGBgqihhk0NSjKDWzXb3RdlLBUSYGJk8GtpzUvPSSDB8G5tKinBIGIZ+sxLJE/ZzEvHT94JKizLx0a6BxUmjGOUNodHsLgAzuEgZu/dLi1CL9xJTczDwA+rnvwMAAAAA=[0mAhmad Gbele
+Checking out git git@github.com:AhmadG-coder/Payoneer-exercise.git into /var/jenkins_home/workspace/CI@script/446c6d274f2874ddc997d4424e17679087842555cc7f7039779b01b13cf58301 to read jenkins/Jenkinsfile
+The recommended git tool is: git
+using credential 4d49bdc7-df49-4b1a-8ea4-9d6dd0dbf2be
+Cloning the remote Git repository
+Cloning repository git@github.com:AhmadG-coder/Payoneer-exercise.git
+ > git init /var/jenkins_home/workspace/CI@script/446c6d274f2874ddc997d4424e17679087842555cc7f7039779b01b13cf58301 # timeout=10
+Fetching upstream changes from git@github.com:AhmadG-coder/Payoneer-exercise.git
+ > git --version # timeout=10
+ > git --version # 'git version 2.30.2'
+using GIT_SSH to set credentials 
+ > git fetch --tags --force --progress -- git@github.com:AhmadG-coder/Payoneer-exercise.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git config remote.origin.url git@github.com:AhmadG-coder/Payoneer-exercise.git # timeout=10
+ > git config --add remote.origin.fetch +refs/heads/*:refs/remotes/origin/* # timeout=10
+Avoid second fetch
+ > git rev-parse refs/remotes/origin/first-branch^{commit} # timeout=10
+Checking out Revision 9c5c6176fe6897df2f2257e15a84972c7ebcb4fc (refs/remotes/origin/first-branch)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f 9c5c6176fe6897df2f2257e15a84972c7ebcb4fc # timeout=10
+ERROR: Checkout failed
+java.lang.InterruptedException
+	at java.base/java.lang.Object.wait(Native Method)
+	at java.base/java.lang.Object.wait(Object.java:328)
+	at java.base/java.lang.ProcessImpl.waitFor(ProcessImpl.java:495)
+	at hudson.Proc$LocalProc.join(Proc.java:332)
+	at hudson.Proc.joinWithTimeout(Proc.java:174)
+	at org.jenkinsci.plugins.gitclient.CliGitAPIImpl.launchCommandIn(CliGitAPIImpl.java:2664)
+	at org.jenkinsci.plugins.gitclient.CliGitAPIImpl.access$1100(CliGitAPIImpl.java:84)
+	at org.jenkinsci.plugins.gitclient.CliGitAPIImpl$9.execute(CliGitAPIImpl.java:2989)
+	at hudson.plugins.git.GitSCM.checkout(GitSCM.java:1352)
+	at org.jenkinsci.plugins.workflow.steps.scm.SCMStep.checkout(SCMStep.java:129)
+	at org.jenkinsci.plugins.workflow.cps.CpsScmFlowDefinition.create(CpsScmFlowDefinition.java:159)
+	at org.jenkinsci.plugins.workflow.cps.CpsScmFlowDefinition.create(CpsScmFlowDefinition.java:70)
+	at org.jenkinsci.plugins.workflow.job.WorkflowRun.run(WorkflowRun.java:311)
+	at hudson.model.ResourceController.execute(ResourceController.java:101)
+	at hudson.model.Executor.run(Executor.java:442)
+ERROR: Maximum checkout retry attempts reached, aborting
+Finished: FAILURE
