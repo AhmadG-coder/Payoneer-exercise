@@ -1,0 +1,31 @@
+<?xml version='1.1' encoding='UTF-8'?>
+<Tag plugin="workflow-support@815.vd60466279fc8">
+  <node class="cps.n.StepStartNode" plugin="workflow-cps@2682.va_473dcddc941">
+    <parentIds>
+      <string>9</string>
+    </parentIds>
+    <id>10</id>
+    <descriptorId>org.jenkinsci.plugins.workflow.steps.EnvStep</descriptorId>
+  </node>
+  <actions>
+    <s.a.LogStorageAction/>
+    <cps.a.ArgumentsActionImpl plugin="workflow-cps@2682.va_473dcddc941">
+      <arguments>
+        <entry>
+          <string>overrides</string>
+          <list>
+            <string>GIT_BRANCH=origin/first-branch</string>
+            <string>GIT_COMMIT=3ca88f99037041b365991c82a4069b06b79d7862</string>
+            <string>GIT_PREVIOUS_COMMIT=9c5c6176fe6897df2f2257e15a84972c7ebcb4fc</string>
+            <string>GIT_URL=git@github.com:AhmadG-coder/Payoneer-exercise.git</string>
+          </list>
+        </entry>
+      </arguments>
+      <sensitiveVariables/>
+      <isUnmodifiedBySanitization>true</isUnmodifiedBySanitization>
+    </cps.a.ArgumentsActionImpl>
+    <wf.a.TimingAction plugin="workflow-api@1143.v2d42f1e9dea_5">
+      <startTime>1648211837631</startTime>
+    </wf.a.TimingAction>
+  </actions>
+</Tag>

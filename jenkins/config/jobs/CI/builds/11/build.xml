@@ -1,0 +1,292 @@
+<?xml version='1.1' encoding='UTF-8'?>
+<flow-build plugin="workflow-job@1174.vdcb_d054cf74a_">
+  <actions>
+    <org.jenkinsci.plugins.workflow.cps.replay.ReplayFlowFactoryAction plugin="workflow-cps@2682.va_473dcddc941">
+      <replacementLoadedScripts/>
+    </org.jenkinsci.plugins.workflow.cps.replay.ReplayFlowFactoryAction>
+    <hudson.model.CauseAction>
+      <causeBag class="linked-hash-map">
+        <entry>
+          <hudson.model.Cause_-UserIdCause>
+            <userId>admin</userId>
+          </hudson.model.Cause_-UserIdCause>
+          <int>1</int>
+        </entry>
+        <entry>
+          <org.jenkinsci.plugins.workflow.cps.replay.ReplayCause plugin="workflow-cps@2682.va_473dcddc941">
+            <originalNumber>9</originalNumber>
+          </org.jenkinsci.plugins.workflow.cps.replay.ReplayCause>
+          <int>1</int>
+        </entry>
+      </causeBag>
+    </hudson.model.CauseAction>
+    <hudson.model.ParametersAction>
+      <safeParameters class="sorted-set"/>
+      <parameters>
+        <hudson.model.StringParameterValue>
+          <name>Service_revision</name>
+          <value>first-branch</value>
+        </hudson.model.StringParameterValue>
+      </parameters>
+      <parameterDefinitionNames>
+        <string>Service_revision</string>
+      </parameterDefinitionNames>
+    </hudson.model.ParametersAction>
+    <org.jenkinsci.plugins.workflow.libs.LibrariesAction plugin="workflow-cps-global-lib@564.ve62a_4eb_b_e039">
+      <libraries/>
+    </org.jenkinsci.plugins.workflow.libs.LibrariesAction>
+    <org.jenkinsci.plugins.pipeline.modeldefinition.actions.ExecutionModelAction plugin="pipeline-model-definition@2.2064.v5eef7d0982b_e">
+      <stagesUUID>c47f6992-227b-4968-98d8-f34fb2aa8dd6</stagesUUID>
+      <pipelineDefs>
+        <org.jenkinsci.plugins.pipeline.modeldefinition.ast.ModelASTPipelineDef plugin="pipeline-model-api@2.2064.v5eef7d0982b_e">
+          <stages>
+            <stages>
+              <org.jenkinsci.plugins.pipeline.modeldefinition.ast.ModelASTStage>
+                <name>Checkout version</name>
+                <branches>
+                  <org.jenkinsci.plugins.pipeline.modeldefinition.ast.ModelASTBranch>
+                    <name>default</name>
+                    <steps>
+                      <org.jenkinsci.plugins.pipeline.modeldefinition.ast.ModelASTScriptBlock>
+                        <name>script</name>
+                        <args class="org.jenkinsci.plugins.pipeline.modeldefinition.ast.ModelASTNamedArgumentList">
+                          <arguments class="linked-hash-map">
+                            <entry>
+                              <org.jenkinsci.plugins.pipeline.modeldefinition.ast.ModelASTKey>
+                                <key>scriptBlock</key>
+                              </org.jenkinsci.plugins.pipeline.modeldefinition.ast.ModelASTKey>
+                              <org.jenkinsci.plugins.pipeline.modeldefinition.ast.ModelASTValue_-ConstantValue>
+                                <value class="string">checkout([$class: &apos;GitSCM&apos;, branches: [[name: &apos;${service_revision}&apos;]], extensions: [], userRemoteConfigs: [[credentialsId: &apos;4d49bdc7-df49-4b1a-8ea4-9d6dd0dbf2be&apos;, url: &apos;git@github.com:AhmadG-coder/Payoneer-exercise.git&apos;]]])</value>
+                              </org.jenkinsci.plugins.pipeline.modeldefinition.ast.ModelASTValue_-ConstantValue>
+                            </entry>
+                          </arguments>
+                        </args>
+                      </org.jenkinsci.plugins.pipeline.modeldefinition.ast.ModelASTScriptBlock>
+                    </steps>
+                  </org.jenkinsci.plugins.pipeline.modeldefinition.ast.ModelASTBranch>
+                </branches>
+              </org.jenkinsci.plugins.pipeline.modeldefinition.ast.ModelASTStage>
+              <org.jenkinsci.plugins.pipeline.modeldefinition.ast.ModelASTStage>
+                <name>Build</name>
+                <branches>
+                  <org.jenkinsci.plugins.pipeline.modeldefinition.ast.ModelASTBranch>
+                    <name>default</name>
+                    <steps>
+                      <org.jenkinsci.plugins.pipeline.modeldefinition.ast.ModelASTScriptBlock>
+                        <name>script</name>
+                        <args class="org.jenkinsci.plugins.pipeline.modeldefinition.ast.ModelASTNamedArgumentList">
+                          <arguments class="linked-hash-map">
+                            <entry>
+                              <org.jenkinsci.plugins.pipeline.modeldefinition.ast.ModelASTKey>
+                                <key>scriptBlock</key>
+                              </org.jenkinsci.plugins.pipeline.modeldefinition.ast.ModelASTKey>
+                              <org.jenkinsci.plugins.pipeline.modeldefinition.ast.ModelASTValue_-ConstantValue>
+                                <value class="string">sh &quot;docker build app/ -t ${env.current_docker_image_name}&quot;</value>
+                              </org.jenkinsci.plugins.pipeline.modeldefinition.ast.ModelASTValue_-ConstantValue>
+                            </entry>
+                          </arguments>
+                        </args>
+                      </org.jenkinsci.plugins.pipeline.modeldefinition.ast.ModelASTScriptBlock>
+                    </steps>
+                  </org.jenkinsci.plugins.pipeline.modeldefinition.ast.ModelASTBranch>
+                </branches>
+              </org.jenkinsci.plugins.pipeline.modeldefinition.ast.ModelASTStage>
+              <org.jenkinsci.plugins.pipeline.modeldefinition.ast.ModelASTStage>
+                <name>Tag for deployment</name>
+                <branches>
+                  <org.jenkinsci.plugins.pipeline.modeldefinition.ast.ModelASTBranch>
+                    <name>default</name>
+                    <steps>
+                      <org.jenkinsci.plugins.pipeline.modeldefinition.ast.ModelASTScriptBlock>
+                        <name>script</name>
+                        <args class="org.jenkinsci.plugins.pipeline.modeldefinition.ast.ModelASTNamedArgumentList">
+                          <arguments class="linked-hash-map">
+                            <entry>
+                              <org.jenkinsci.plugins.pipeline.modeldefinition.ast.ModelASTKey>
+                                <key>scriptBlock</key>
+                              </org.jenkinsci.plugins.pipeline.modeldefinition.ast.ModelASTKey>
+                              <org.jenkinsci.plugins.pipeline.modeldefinition.ast.ModelASTValue_-ConstantValue>
+                                <value class="string">sh &quot;docker container prune --force --filter &apos;until=3h&apos;&quot;
+                                    sh &quot;docker image prune -a --force --filter &apos;until=3h&apos;&quot;
+                                    def last_successful_build = Jenkins.instance.getItem(env.JOB_NAME).lastSuccessfulBuild
+                                    if (last_successful_build){
+                                            last_docker_image_num = Jenkins.instance.getItem(env.JOB_NAME).lastSuccessfulBuild.number
+                                        }
+                                        tag_exists = sh (script:&quot;docker images -q ${latest_image_name}&quot;, returnStdout:true)
+                                        if (tag_exists.trim()){
+                                            sh &quot;docker tag ${latest_image_name} service:${last_docker_image_num}&quot;
+                                        }
+                                 
+                                    
+                                    sh &quot;docker tag ${env.current_docker_image_name} ${latest_image_name}&quot;</value>
+                              </org.jenkinsci.plugins.pipeline.modeldefinition.ast.ModelASTValue_-ConstantValue>
+                            </entry>
+                          </arguments>
+                        </args>
+                      </org.jenkinsci.plugins.pipeline.modeldefinition.ast.ModelASTScriptBlock>
+                    </steps>
+                  </org.jenkinsci.plugins.pipeline.modeldefinition.ast.ModelASTBranch>
+                </branches>
+              </org.jenkinsci.plugins.pipeline.modeldefinition.ast.ModelASTStage>
+              <org.jenkinsci.plugins.pipeline.modeldefinition.ast.ModelASTStage>
+                <name>Deploy</name>
+                <branches>
+                  <org.jenkinsci.plugins.pipeline.modeldefinition.ast.ModelASTBranch>
+                    <name>default</name>
+                    <steps>
+                      <org.jenkinsci.plugins.pipeline.modeldefinition.ast.ModelASTScriptBlock>
+                        <name>script</name>
+                        <args class="org.jenkinsci.plugins.pipeline.modeldefinition.ast.ModelASTNamedArgumentList">
+                          <arguments class="linked-hash-map">
+                            <entry>
+                              <org.jenkinsci.plugins.pipeline.modeldefinition.ast.ModelASTKey>
+                                <key>scriptBlock</key>
+                              </org.jenkinsci.plugins.pipeline.modeldefinition.ast.ModelASTKey>
+                              <org.jenkinsci.plugins.pipeline.modeldefinition.ast.ModelASTValue_-ConstantValue>
+                                <value class="string">sh &quot;cd app/ &amp;&amp; docker-compose up -d&quot;</value>
+                              </org.jenkinsci.plugins.pipeline.modeldefinition.ast.ModelASTValue_-ConstantValue>
+                            </entry>
+                          </arguments>
+                        </args>
+                      </org.jenkinsci.plugins.pipeline.modeldefinition.ast.ModelASTScriptBlock>
+                    </steps>
+                  </org.jenkinsci.plugins.pipeline.modeldefinition.ast.ModelASTBranch>
+                </branches>
+              </org.jenkinsci.plugins.pipeline.modeldefinition.ast.ModelASTStage>
+            </stages>
+            <uuid>c47f6992-227b-4968-98d8-f34fb2aa8dd6</uuid>
+          </stages>
+          <environment>
+            <variables class="linked-hash-map">
+              <entry>
+                <org.jenkinsci.plugins.pipeline.modeldefinition.ast.ModelASTKey>
+                  <key>docker_image_name</key>
+                </org.jenkinsci.plugins.pipeline.modeldefinition.ast.ModelASTKey>
+                <org.jenkinsci.plugins.pipeline.modeldefinition.ast.ModelASTValue_-ConstantValue>
+                  <value class="string">service</value>
+                </org.jenkinsci.plugins.pipeline.modeldefinition.ast.ModelASTValue_-ConstantValue>
+              </entry>
+              <entry>
+                <org.jenkinsci.plugins.pipeline.modeldefinition.ast.ModelASTKey>
+                  <key>current_docker_image_name</key>
+                </org.jenkinsci.plugins.pipeline.modeldefinition.ast.ModelASTKey>
+                <org.jenkinsci.plugins.pipeline.modeldefinition.ast.ModelASTValue_-GStringValue>
+                  <value class="string">&quot;${docker_image_name}:${BUILD_NUMBER}&quot;</value>
+                </org.jenkinsci.plugins.pipeline.modeldefinition.ast.ModelASTValue_-GStringValue>
+              </entry>
+              <entry>
+                <org.jenkinsci.plugins.pipeline.modeldefinition.ast.ModelASTKey>
+                  <key>latest_image_name</key>
+                </org.jenkinsci.plugins.pipeline.modeldefinition.ast.ModelASTKey>
+                <org.jenkinsci.plugins.pipeline.modeldefinition.ast.ModelASTValue_-GStringValue>
+                  <value class="string">&quot;${docker_image_name}:latest&quot;</value>
+                </org.jenkinsci.plugins.pipeline.modeldefinition.ast.ModelASTValue_-GStringValue>
+              </entry>
+            </variables>
+          </environment>
+          <agent>
+            <variables class="org.jenkinsci.plugins.pipeline.modeldefinition.ast.ModelASTValue$ConstantValue">
+              <value class="string">agent</value>
+            </variables>
+            <agentType>
+              <key>label</key>
+            </agentType>
+          </agent>
+        </org.jenkinsci.plugins.pipeline.modeldefinition.ast.ModelASTPipelineDef>
+      </pipelineDefs>
+    </org.jenkinsci.plugins.pipeline.modeldefinition.actions.ExecutionModelAction>
+  </actions>
+  <queueId>16</queueId>
+  <timestamp>1648212569651</timestamp>
+  <startTime>1648212569666</startTime>
+  <result>FAILURE</result>
+  <duration>5705</duration>
+  <charset>UTF-8</charset>
+  <keepLog>false</keepLog>
+  <execution class="org.jenkinsci.plugins.workflow.cps.CpsFlowExecution">
+    <result>FAILURE</result>
+    <script>pipeline {
+    agent {label &apos;agent&apos;}
+    environment {
+    docker_image_name = &quot;service&quot;
+    current_docker_image_name = &quot;${docker_image_name}:${BUILD_NUMBER}&quot;
+    latest_image_name = &quot;${docker_image_name}:latest&quot;}
+    stages {
+        stage(&apos;Checkout version&apos;) {
+            steps {
+                script {
+                    checkout([$class: &apos;GitSCM&apos;, branches: [[name: &apos;${service_revision}&apos;]], extensions: [], userRemoteConfigs: [[credentialsId: &apos;4d49bdc7-df49-4b1a-8ea4-9d6dd0dbf2be&apos;, url: &apos;git@github.com:AhmadG-coder/Payoneer-exercise.git&apos;]]])
+                }
+            }
+        }
+        stage(&apos;Build&apos;) {
+                    steps {
+                        script {
+                            sh &quot;docker build app/ -t ${env.current_docker_image_name}&quot;
+                        }
+                    }
+                }
+        stage(&apos;Tag for deployment&apos;) {
+                            steps {
+                                script {
+                                    sh &quot;docker container prune --force --filter &apos;until=3h&apos;&quot;
+                                    sh &quot;docker image prune -a --force --filter &apos;until=3h&apos;&quot;
+                                    def last_successful_build = Jenkins.instance.getItem(env.JOB_NAME).lastSuccessfulBuild
+                                    if (last_successful_build){
+                                            last_docker_image_num = Jenkins.instance.getItem(env.JOB_NAME).lastSuccessfulBuild.number
+                                        }
+                                        tag_exists = sh (script:&quot;docker images -q ${latest_image_name}&quot;, returnStdout:true)
+                                        if (tag_exists.trim()){
+                                            sh &quot;docker tag ${latest_image_name} service:${last_docker_image_num}&quot;
+                                        }
+                                 
+                                    
+                                    sh &quot;docker tag ${env.current_docker_image_name} ${latest_image_name}&quot;
+                                }
+                            }
+                        }
+        stage(&apos;Deploy&apos;) {
+                                    steps {
+                                        script {
+                                            sh &quot;cd app/ &amp;&amp; docker-compose up -d&quot;
+                                        }
+                                    }
+                                }
+    }
+}
+
+
+</script>
+    <loadedScripts class="map"/>
+    <durabilityHint>MAX_SURVIVABILITY</durabilityHint>
+    <timings class="map">
+      <entry>
+        <string>flowNode</string>
+        <long>484683000</long>
+      </entry>
+      <entry>
+        <string>classLoad</string>
+        <long>2951282000</long>
+      </entry>
+      <entry>
+        <string>run</string>
+        <long>2326252300</long>
+      </entry>
+      <entry>
+        <string>parse</string>
+        <long>773569400</long>
+      </entry>
+      <entry>
+        <string>saveProgram</string>
+        <long>842851300</long>
+      </entry>
+    </timings>
+    <sandbox>true</sandbox>
+    <iota>12</iota>
+    <head>1:12</head>
+    <done>true</done>
+    <resumeBlocked>false</resumeBlocked>
+  </execution>
+  <completed>true</completed>
+  <checkouts class="hudson.util.PersistedList"/>
+</flow-build>
