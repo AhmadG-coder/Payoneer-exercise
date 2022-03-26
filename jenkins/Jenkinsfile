@@ -1,4 +1,4 @@
-@Library('lib@${service_revision}') _
+@Library("lib@${service_revision}") _
 pipeline {
     agent {label 'agent'}
     environment {
