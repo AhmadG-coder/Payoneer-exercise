@@ -1,6 +1,5 @@
-libraries{
-lib("lib@${service_revision}")
-}
+
+
 pipeline {
     agent {label 'agent'}
     environment {
@@ -27,7 +26,7 @@ pipeline {
                                 script {
                                     sh "docker container prune --force --filter 'until=3h'"
                                     sh "docker image prune -a --force --filter 'until=3h'"
-                                    def last_successful_build = utils.get_last_successful_build()
+                                    def last_successful_build = Jenkins.instance.getItem(env.JOB_NAME).lastSuccessfulBuild
                                     if (last_successful_build){
                                             last_docker_image_num = last_successful_build.number
                                         }
@@ -50,6 +49,4 @@ pipeline {
                                 }
     }
 }
-
-
 
