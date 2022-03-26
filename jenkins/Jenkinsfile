@@ -1,4 +1,13 @@
+import jenkins.model.Jenkins
 
+def getLastSuccessful() {
+    try {
+	return Jenkins.getInstance().getItemByFullName(env.JOB_NAME).lastSuccessfulBuild.number
+	}
+	catch(NullPointerException ){
+	return ""
+	}
+}
 
 pipeline {
     agent {label 'agent'}
@@ -26,24 +35,25 @@ pipeline {
                                 script {
                                     sh "docker container prune --force --filter 'until=3h'"
                                     sh "docker image prune -a --force --filter 'until=3h'"
-                                    def last_successful_build = Jenkins.instance.getItem(env.JOB_NAME).lastSuccessfulBuild
+                                    def last_successful_build = getLastSuccessful()
                                     if (last_successful_build){
-                                            last_docker_image_num = last_successful_build.number
+                                            last_docker_image_num = last_successful_build
                                         }
                                         tag_exists = sh (script:"docker images -q ${latest_image_name}", returnStdout:true)
                                         if (tag_exists.trim()){
+                                            sh "docker tag ${docker_image_name} ${latest_image_name}"
                                             sh "docker tag ${latest_image_name} service:${last_docker_image_num}"
                                         }
-                                 
 
-                                    sh "docker tag ${env.current_docker_image_name} ${latest_image_name}"
                                 }
                             }
                         }
         stage('Deploy') {
                                     steps {
                                         script {
-                                            sh "cd app/ && docker-compose up -d"
+                                            sh """cd app/ &&
+                                            docker-compose down
+                                            docker-compose up -d"""
                                         }
                                     }
                                 }
